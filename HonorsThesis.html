@@ -357,9 +357,23 @@ display: none;
 </div>
 
 
+<pre class="r"><code>knitr::opts_chunk$set(echo = TRUE)
+#loading necessary libraries
+library(tidyverse)
+library(fs)
+
+#making a file path to be stepped through for a data list below
+file_paths &lt;- dir_ls(&quot;data/train_tsv&quot;, glob = &quot;*.tsv&quot;)
+
+data_list &lt;- file_paths %&gt;%
+  map(~ read_tsv(.x, col_names = FALSE))
+
+#saving data_list as an object for use later
+saveRDS(data_list, file = &quot;data/data_list.rds&quot;)</code></pre>
 <p>##Background Work</p>
-<pre class="r"><code>view(data_list[[1]])
-view(data_list[[2]])</code></pre>
+<pre class="r"><code>data_list_train &lt;- readRDS(file = &quot;data/data_list.rds&quot;)
+#view(data_list[[1]])
+#view(data_list[[2]])</code></pre>
 
 
 

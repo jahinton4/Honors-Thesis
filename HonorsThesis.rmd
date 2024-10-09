@@ -5,7 +5,7 @@ date: "2024-08-28"
 output: html_document
 ---
 
-```{r setup, include=FALSE}
+```{r setup, eval=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 #loading necessary libraries
 library(tidyverse)
@@ -17,11 +17,15 @@ file_paths <- dir_ls("data/train_tsv", glob = "*.tsv")
 data_list <- file_paths %>%
   map(~ read_tsv(.x, col_names = FALSE))
 
+#saving data_list as an object for use later
+saveRDS(data_list, file = "data/data_list.rds")
+
 ```
 
 ##Background Work
-```{r}
-view(data_list[[1]])
-view(data_list[[2]])
+```{r background work}
+data_list_train <- readRDS(file = "data/data_list.rds")
+#view(data_list[[1]])
+#view(data_list[[2]])
 ```
 
